@@ -5,11 +5,11 @@ import pytest
 
 @pytest.fixture()
 def browser_open_and_set_size():
+    browser.config.window_width = 1600
+    browser.config.window_height = 900
     browser.open('https://www.google.com/ncr')
-    browser.config.driver.maximize_window()
-    browser.config.window_width = 1920
-    browser.config.window_height = 1080
     yield
+
 
 def test_google_found_selene_positive(browser_open_and_set_size):
     browser.element('[name = "q"]').should(be.blank).type('selene').press_enter()
